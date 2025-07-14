@@ -84,7 +84,7 @@ class AboutPage extends StatelessWidget {
                                 Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
                                 SizedBox(width: 10,),
                                 Text('Website: www.example.com'),
-                                SizedBox(width: 100,),
+                                SizedBox(width: 50,),
                                 Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
                                 Text('Degree:Undergraduate'),
                               ],
@@ -94,7 +94,7 @@ class AboutPage extends StatelessWidget {
                                 Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
                                 SizedBox(width: 10,),
                                 Text('Phone: +123 456 7890'),
-                                SizedBox(width: 100,),
+                                SizedBox(width: 80,),
                                 Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
                                 SizedBox(width: 10,),
                                 Text('Email:tazeenzahrabatool@gmail.com'),
@@ -102,20 +102,16 @@ class AboutPage extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                Text('City: New York, USA'),
+                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
+                                SizedBox(width: 10,),
+                                Text('City: Dera Ismail Khan'),
+                                SizedBox(width: 80,),
+                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
+                                SizedBox(width: 10,),
+                                Text('Freelance: Available'),
+
                               ],
                             ),
-                            Row(
-                              children: [
-                                Text('Degree: Master'),
-                              ],
-                            ),
-                            Row(
-                              children: [
-                                Text('Email: email@example.com'),
-                              ],
-                            ),
-                            Text('Freelance: Available'),
                           ],
                         ),
                         SizedBox(height: 10),
