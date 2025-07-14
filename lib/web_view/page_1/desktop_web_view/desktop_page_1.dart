@@ -1,4 +1,6 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
+import 'package:tazeen_portfolio/controllers/utills/app_images/app_images.dart';
 import '../../../controllers/constants/components/responsive_layout_widegt.dart';
 import '../../../controllers/constants/components/sidebar_widget/sidebar_widget_screen.dart';
 import '../../../controllers/utills/app_colors/app_colors.dart';
@@ -26,14 +28,13 @@ class DesktopPage1 extends StatelessWidget {
             child: SingleChildScrollView(
               child: Column(
                 children: [
-
                   /// Hero Section
                   Container(
                     width: double.infinity,
-                    height: screenHeight * 0.5,
+                    height: screenHeight * 1.8,
                     decoration: BoxDecoration(
                       image: DecorationImage(
-                        image: AssetImage('assets/images/hero.jpg'),
+                        image: AssetImage(AppImages.heroImage),
                         fit: BoxFit.cover,
                       ),
                     ),
@@ -41,27 +42,65 @@ class DesktopPage1 extends StatelessWidget {
                       padding: const EdgeInsets.all(32.0),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
-                          Text(
-                            'Alex Smith',
-                            style: TextStyle(
-                              fontFamily: 'Castoro',
-                              fontSize: 48,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.whiteText,
+                          Padding(
+                            padding: const EdgeInsets.only(top: 258.0),
+                            child: Row(
+                              children: [
+                                Text(
+                                  'Tazeen',
+                                  style: TextStyle(
+                                    fontFamily: 'Castoro',
+                                    fontSize: 43,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.whiteText,
+                                  ),
+                                ),
+                                Text(
+                                  ' Zahra',
+                                  style: TextStyle(
+                                    fontFamily: 'Castoro',
+                                    fontSize: 43,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.black,
+                                  ),
+                                ),
+                                Text(
+                                  ' Batool',
+                                  style: TextStyle(
+                                    fontFamily: 'Castoro',
+                                    fontSize: 43,
+                                    fontWeight: FontWeight.bold,
+                                    color: AppColors.whiteText,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           SizedBox(height: 8),
-                          Text(
-                            'I\'m Photographer',
-                            style: TextStyle(
-                              fontFamily: 'PublicSans',
-                              fontSize: 24,
-                              color: AppColors.whiteText,
-                            ),
-                          ),
+                    SizedBox(
+                    height: 32,
+                    child: DefaultTextStyle(
+                      style: TextStyle(
+                        fontFamily: 'PublicSans',
+                        fontSize: 30,
+                        color: AppColors.whiteText,
+                      ),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          FadeAnimatedText("I'm Flutter Developer"),
+                          FadeAnimatedText("I'm UI/UX Designer"),
+                          FadeAnimatedText("I'm Programmer"),
                         ],
+                        repeatForever: true,
+                        pause: Duration(milliseconds: 1500),
+                        isRepeatingAnimation: true,
+                      ),
+                    ),
+                  )
+
+                ],
                       ),
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tazeen_portfolio/controllers/utills/app_images/app_images.dart';
 import '../../../utills/app_colors/app_colors.dart';
 class SidebarWidget extends StatefulWidget {
   final Function(int)? onItemTapped; // Reusable callback for navigation
@@ -29,61 +30,78 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                 padding: const EdgeInsets.all(16.0),
                 child: CircleAvatar(
                   radius: sidebarWidth > 250 ? 40 : 30, // Responsive avatar size
-                  backgroundImage: AssetImage('assets/images/pic1.jpg'),
+                  backgroundImage: AssetImage(AppImages.heroImage),
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Text(
-                  'Alex Smith',
-                  style: TextStyle(
-                    color: AppColors.whiteText,
-                    fontFamily: 'Castoro',
-                    fontSize: sidebarWidth > 250 ? 20 : 16, // Responsive font size
+              Row(
+                mainAxisSize: MainAxisSize.min, // Keeps row width compact to text
+                children: [
+                  Text(
+                    'Tazeen',
+                    style: TextStyle(
+                      color: Colors.brown,
+                      fontFamily: 'Castoro',
+                      fontSize: sidebarWidth > 250 ? 20 : 16,
+                    ),
                   ),
-                ),
+                  Text(
+                    ' Zahra',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontFamily: 'Castoro',
+                      fontSize: sidebarWidth > 250 ? 20 : 16,
+                    ),
+                  ),
+                  Text(
+                    ' Batool',
+                    style: TextStyle(
+                      color: Colors.brown,
+                      fontFamily: 'Castoro',
+                      fontSize: sidebarWidth > 250 ? 20 : 16,
+                    ),
+                  ),
+                ],
               ),
+
+
               // Social Media Row with Hover
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MouseRegion(
-                      onHover: (_) => setState(() {}),
-                      child: IconButton(
-                        icon: Icon(Icons.language, color: AppColors.whiteText),
-                        onPressed: () {},
-                        color: AppColors.whiteText.withOpacity(0.7),
-                        hoverColor: Colors.blue,
-                        iconSize: sidebarWidth > 250 ? 24 : 20, // Responsive icon size
-                      ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MouseRegion(
+                    onHover: (_) => setState(() {}),
+                    child: IconButton(
+                      icon: Icon(Icons.language, color: AppColors.whiteText),
+                      onPressed: () {},
+                      color: AppColors.whiteText.withOpacity(0.7),
+                      hoverColor: Colors.brown,
+                      iconSize: sidebarWidth > 250 ? 24 : 20, // Responsive icon size
                     ),
-                    MouseRegion(
-                      onHover: (_) => setState(() {}),
-                      child: IconButton(
-                        icon: Icon(Icons.facebook, color: AppColors.whiteText),
-                        onPressed: () {},
-                        color: AppColors.whiteText.withOpacity(0.7),
-                        hoverColor: Colors.blue,
-                        iconSize: sidebarWidth > 250 ? 24 : 20,
-                      ),
+                  ),
+                  MouseRegion(
+                    onHover: (_) => setState(() {}),
+                    child: IconButton(
+                      icon: Icon(Icons.facebook, color: AppColors.whiteText),
+                      onPressed: () {},
+                      color: AppColors.whiteText.withOpacity(0.7),
+                      hoverColor: Colors.brown,
+                      iconSize: sidebarWidth > 250 ? 24 : 20,
                     ),
-                    MouseRegion(
-                      onHover: (_) => setState(() {}),
-                      child: IconButton(
-                        icon: Icon(Icons.camera_alt, color: AppColors.whiteText), // Instagram placeholder
-                        onPressed: () {},
-                        color: AppColors.whiteText.withOpacity(0.7),
-                        hoverColor: Colors.blue,
-                        iconSize: sidebarWidth > 250 ? 24 : 20,
-                      ),
+                  ),
+                  MouseRegion(
+                    onHover: (_) => setState(() {}),
+                    child: IconButton(
+                      icon: Icon(Icons.camera_alt, color: AppColors.whiteText), // Instagram placeholder
+                      onPressed: () {},
+                      color: AppColors.whiteText.withOpacity(0.7),
+                      hoverColor: Colors.brown,
+                      iconSize: sidebarWidth > 250 ? 24 : 20,
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
               ListTile(
-                leading: Icon(Icons.home, color: _selectedIndex == 0 ? Colors.blue : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
+                leading: Icon(Icons.home, color: _selectedIndex == 0 ? Colors.brown : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
                 title: Text('Home', style: TextStyle(color: _selectedIndex == 0 ? Colors.grey : AppColors.whiteText, fontSize: sidebarWidth > 250 ? 16 : 14)),
                 onTap: () {
                   setState(() => _selectedIndex = 0);
@@ -91,7 +109,7 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.person, color: _selectedIndex == 1 ? Colors.blue : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
+                leading: Icon(Icons.person, color: _selectedIndex == 1 ? Colors.brown : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
                 title: Text('About', style: TextStyle(color: _selectedIndex == 1 ? Colors.grey : AppColors.whiteText, fontSize: sidebarWidth > 250 ? 16 : 14)),
                 onTap: () {
                   setState(() => _selectedIndex = 1);
@@ -99,7 +117,7 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.description, color: _selectedIndex == 2 ? Colors.blue : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
+                leading: Icon(Icons.description, color: _selectedIndex == 2 ? Colors.brown : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
                 title: Text('Resume', style: TextStyle(color: _selectedIndex == 2 ? Colors.grey : AppColors.whiteText, fontSize: sidebarWidth > 250 ? 16 : 14)),
                 onTap: () {
                   setState(() => _selectedIndex = 2);
@@ -107,7 +125,7 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.photo, color: _selectedIndex == 3 ? Colors.blue : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
+                leading: Icon(Icons.photo, color: _selectedIndex == 3 ? Colors.brown : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
                 title: Text('Portfolio', style: TextStyle(color: _selectedIndex == 3 ? Colors.grey : AppColors.whiteText, fontSize: sidebarWidth > 250 ? 16 : 14)),
                 onTap: () {
                   setState(() => _selectedIndex = 3);
@@ -115,10 +133,26 @@ class _SidebarWidgetState extends State<SidebarWidget> {
                 },
               ),
               ListTile(
-                leading: Icon(Icons.build, color: _selectedIndex == 4 ? Colors.blue : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
+                leading: Icon(Icons.build, color: _selectedIndex == 4 ? Colors.brown : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
                 title: Text('Services', style: TextStyle(color: _selectedIndex == 4 ? Colors.grey : AppColors.whiteText, fontSize: sidebarWidth > 250 ? 16 : 14)),
                 onTap: () {
                   setState(() => _selectedIndex = 4);
+                  if (widget.onItemTapped != null) widget.onItemTapped!(4);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.arrow_drop_down, color: _selectedIndex == 5? Colors.brown : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
+                title: Text('Dropdown', style: TextStyle(color: _selectedIndex == 3 ? Colors.grey : AppColors.whiteText, fontSize: sidebarWidth > 250 ? 16 : 14)),
+                onTap: () {
+                  setState(() => _selectedIndex = 5);
+                  if (widget.onItemTapped != null) widget.onItemTapped!(3);
+                },
+              ),
+              ListTile(
+                leading: Icon(Icons.contact_page_outlined, color: _selectedIndex == 6? Colors.brown : AppColors.whiteText, size: sidebarWidth > 250 ? 24 : 20),
+                title: Text('Contacts', style: TextStyle(color: _selectedIndex == 4 ? Colors.grey : AppColors.whiteText, fontSize: sidebarWidth > 250 ? 16 : 14)),
+                onTap: () {
+                  setState(() => _selectedIndex = 6);
                   if (widget.onItemTapped != null) widget.onItemTapped!(4);
                 },
               ),
