@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:tazeen_portfolio/web_view/main_web_page/main_web_page.dart';
 import 'package:tazeen_portfolio/web_view/page_1/desktop_web_view/desktop_page_1.dart';
 import 'package:tazeen_portfolio/web_view/page_1/page_1.dart';
+import 'package:tazeen_portfolio/web_view/page_2/desktop_about_page/desktop_about_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: HomeScreen(),
+      home:AboutPage(),
     );
   }
 }
