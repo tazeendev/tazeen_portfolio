@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:tazeen_portfolio/views/screen_views/home_screen/main_home_screen/main_home_screen.dart';
+import 'package:tazeen_portfolio/web_view/main_web_page/main_web_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: MainHomeScreen(),
+      home: MainWebPage(),
     );
   }
 }
