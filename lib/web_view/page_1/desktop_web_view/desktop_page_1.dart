@@ -1,10 +1,20 @@
+import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:tazeen_portfolio/controllers/utills/app_images/app_images.dart';
-import '../../../controllers/constants/components/responsive_layout_widegt.dart';
 import '../../../controllers/constants/components/sidebar_widget/sidebar_widget_screen.dart';
 import '../../../controllers/utills/app_colors/app_colors.dart';
-class DesktopPage1 extends StatelessWidget {
+
+class DesktopPage1 extends StatefulWidget {
+  @override
+  State<DesktopPage1> createState() => _DesktopPage1State();
+}
+
+class _DesktopPage1State extends State<DesktopPage1> {
+  bool isHoverHire = false;
+
+  bool isHoverProjects = false;
+
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
@@ -13,144 +23,183 @@ class DesktopPage1 extends StatelessWidget {
     return Scaffold(
       body: Row(
         children: [
-          /// Sidebar
-          SidebarWidget(
-            //onItemTapped: (index) {
-              // Handle navigation based on index (0=Home, 1=About, 2=Resume, 3=Portfolio, 4=Services, 5=Demo, 6=Contact)
-            //  setState(() {
-              //  _selectedIndex = index;
-              //});
-            //},
-          ),
-
-          /// Main content area
+          SidebarWidget(),
           Expanded(
             child: SingleChildScrollView(
-              child: Column(
+              child: Stack(
                 children: [
-                  /// Hero Section
                   Container(
-                    width: double.infinity,
-                    height: screenHeight * 1.8,
+                    width: screenWidth * 1.0,
+                    height: screenHeight * 1.5,
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(AppImages.heroImage),
                         fit: BoxFit.cover,
                       ),
                     ),
+                  ),
+                  Positioned.fill(
+                    child: ClipRect(
+                      child: BackdropFilter(
+                        filter: ImageFilter.blur(sigmaX: 1, sigmaY: 1),
+                        child: Container(
+                          color: Colors.black.withOpacity(0.01), // Dark tint
+                        ),
+                      ),
+                    ),
+                  ),
+                  Positioned.fill(
                     child: Padding(
-                      padding: const EdgeInsets.all(32.0),
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 80,
+                        vertical: 200,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        mainAxisAlignment: MainAxisAlignment.start,
+                       // mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 258.0),
-                            child: Row(
+                          RichText(
+                            text: TextSpan(
                               children: [
-                                Text(
-                                  'Tazeen',
+                                TextSpan(
+                                  text: 'Tazeen ',
                                   style: TextStyle(
-                                    fontFamily: 'Castoro',
-                                    fontSize: 43,
+                                    fontSize: 60,
                                     fontWeight: FontWeight.bold,
-                                    color: AppColors.whiteText,
+                                    color: Colors.white,
                                   ),
                                 ),
-                                Text(
-                                  ' Zahra',
+                                TextSpan(
+                                  text: 'Zahra ',
                                   style: TextStyle(
-                                    fontFamily: 'Castoro',
-                                    fontSize: 43,
+                                    fontSize: 60,
                                     fontWeight: FontWeight.bold,
-                                    color: Colors.black,
+                                    color: AppColors.primaryBlack,
                                   ),
                                 ),
-                                Text(
-                                  ' Batool',
-                                  style: TextStyle(
-                                    fontFamily: 'Castoro',
-                                    fontSize: 43,
-                                    fontWeight: FontWeight.bold,
-                                    color: AppColors.whiteText,
-                                  ),
-                                ),
+                                // TextSpan(
+                                //   text: 'Batool',
+                                //   style: TextStyle(
+                                //     fontSize: 50,
+                                //     fontWeight: FontWeight.bold,
+                                //     color: Colors.white,
+                                //   ),
+                                // ),
                               ],
                             ),
                           ),
-                          SizedBox(height: 8),
-                    SizedBox(
-                    height: 32,
-                    child: DefaultTextStyle(
-                      style: TextStyle(
-                        fontFamily: 'PublicSans',
-                        fontSize: 30,
-                        color: AppColors.whiteText,
-                      ),
-                      child: AnimatedTextKit(
-                        animatedTexts: [
-                          FadeAnimatedText("I'm Flutter Developer"),
-                          FadeAnimatedText("I'm UI/UX Designer"),
-                          FadeAnimatedText("I'm Programmer"),
-                        ],
-                        repeatForever: true,
-                        pause: Duration(milliseconds: 1500),
-                        isRepeatingAnimation: true,
-                      ),
-                    ),
-                  )
+                          SizedBox(height: 16),
 
-                ],
-                      ),
-                    ),
-                  ),
-
-                  /// Projects Section
-                  Padding(
-                    padding: const EdgeInsets.all(24.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'My Projects',
-                          style: TextStyle(
-                            fontFamily: 'Castoro',
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
+                          /// Animated Text (Typewriter)
+                          SizedBox(
+                            height: 40,
+                            child: DefaultTextStyle(
+                              style: TextStyle(
+                                fontFamily: 'PublicSans',
+                                fontSize: 30,
+                                color: Colors.white70,
+                                fontWeight: FontWeight.w600,
+                              ),
+                              child: AnimatedTextKit(
+                                animatedTexts: [
+                                  TypewriterAnimatedText(
+                                    "I'm Flutter Developer",
+                                    speed: Duration(milliseconds: 100),
+                                  ),
+                                  TypewriterAnimatedText(
+                                    "I'm UI/UX Designer",
+                                    speed: Duration(milliseconds: 100),
+                                  ),
+                                  TypewriterAnimatedText(
+                                    "I'm Programmer",
+                                    speed: Duration(milliseconds: 100),
+                                  ),
+                                ],
+                                repeatForever: true,
+                              ),
+                            ),
                           ),
-                        ),
-                        SizedBox(height: 16),
-                        ListView.builder(
-                          shrinkWrap: true,
-                          physics: NeverScrollableScrollPhysics(),
-                          itemCount: 5,
-                          itemBuilder: (context, index) {
-                            return Card(
-                              margin: EdgeInsets.symmetric(vertical: 8.0),
-                              child: ListTile(
-                                leading: Icon(Icons.photo, color: AppColors.primaryBlack),
-                                title: Text(
-                                  'Project ${index + 1}',
-                                  style: TextStyle(fontFamily: 'PublicSans', fontSize: 18),
-                                ),
-                                subtitle: Text(
-                                  'Description for Project ${index + 1}',
-                                  style: TextStyle(fontFamily: 'PublicSans', fontSize: 14),
+                          SizedBox(height: 28),
+                          Row(
+                            children: [
+                              /// HIRE ME Button
+                              MouseRegion(
+                                onEnter: (_) =>
+                                    setState(() => isHoverHire = true),
+                                onExit: (_) =>
+                                    setState(() => isHoverHire = false),
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                  decoration: BoxDecoration(
+                                    color: isHoverHire
+                                        ? Colors.black
+                                        : Colors.brown,
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: ElevatedButton(
+                                    onPressed: () {},
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors
+                                          .transparent, // handled by container
+                                      shadowColor: Colors
+                                          .transparent, // remove default shadow
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 30,
+                                        vertical: 18,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'Hire Me',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
                                 ),
                               ),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
-                  ),
-
-                  /// Additional Content
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 16),
-                    child: Text(
-                      'Welcome to my portfolio. Add more content here... ' * 5,
-                      style: TextStyle(fontFamily: 'PublicSans', fontSize: 16),
+                              SizedBox(width: 20),
+                              MouseRegion(
+                                onEnter: (_) =>
+                                    setState(() => isHoverProjects = true),
+                                onExit: (_) =>
+                                    setState(() => isHoverProjects = false),
+                                child: AnimatedContainer(
+                                  duration: Duration(milliseconds: 300),
+                                  curve: Curves.easeInOut,
+                                  decoration: BoxDecoration(
+                                    color: isHoverProjects
+                                        ? Colors.brown
+                                        : Colors.transparent,
+                                    border: Border.all(
+                                      color: Colors.white,
+                                      width: 2,
+                                    ),
+                                    borderRadius: BorderRadius.circular(12),
+                                  ),
+                                  child: TextButton(
+                                    onPressed: () {},
+                                    style: TextButton.styleFrom(
+                                      padding: EdgeInsets.symmetric(
+                                        horizontal: 30,
+                                        vertical: 18,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'View Projects',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

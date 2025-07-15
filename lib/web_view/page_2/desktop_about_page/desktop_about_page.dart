@@ -1,54 +1,61 @@
 import 'package:flutter/material.dart';
 import 'package:tazeen_portfolio/controllers/utills/app_colors/app_colors.dart';
 import 'package:tazeen_portfolio/controllers/utills/app_images/app_images.dart';
+
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: AppColors.whiteText,
       body: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: EdgeInsets.symmetric(
+          horizontal: screenWidth * 0.09, // 8% horizontal padding
+          vertical: 32,
+        ),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    'About',
-                    style: TextStyle(
-                      fontSize: 32,
-                      fontWeight: FontWeight.bold,
-                      fontFamily: 'Castoro', // or 'PublicSans'
-                      color: Colors.black,   // or AppColors.primaryWhite
-                    ),
-                  ),
-                  SizedBox(height: 6),
-                  Container(
-                    width: 80,
-                    height: 3,
-                    color: Colors.brown, // Or use any highlight color you prefer
-                  ),
-                  Text(
-                    'Magnam dolores commodi suscipit. Necessitatibus eius consequuntur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Qui fugit sit in iste officiis commodi quidem hic quas.',
-                    style: TextStyle(fontSize: 16),
-                  ),
-                ],
+              // --- Heading ---
+              Text(
+                'About',
+                style: TextStyle(
+                  fontSize: screenWidth * 0.025, // ~32 at 1280px
+                  fontWeight: FontWeight.bold,
+                  fontFamily: 'Castoro',
+                  color: Colors.black,
+                ),
               ),
-              SizedBox(height: 20),
+              SizedBox(height: 6),
+              Container(
+                width: screenWidth * 0.06, // ~80 at 1280px
+                height: 3,
+                color: Colors.brown,
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Magnam dolores commodi suscipit. Necessitatibus eius consequuntur ex aliquid fuga eum quidem. Sit sint consectetur velit...',
+                style: TextStyle(fontSize: screenWidth * 0.0125), // ~16 at 1280px
+              ),
+              SizedBox(height: 30),
+
+              // --- Main Row ---
               Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
+                  // Left Side Image
                   Expanded(
                     child: Image.asset(
                       AppImages.heroImage,
-                      height:450,
-                      width: 200,
+                      height: screenWidth * 0.35, // ~450 at 1280px
                       fit: BoxFit.cover,
                     ),
                   ),
-                  SizedBox(width: 20),
+                  SizedBox(width: screenWidth * 0.02), // ~20 at 1280px
+
+                  // Right Side Text
                   Expanded(
                     flex: 2,
                     child: Column(
@@ -57,67 +64,49 @@ class AboutPage extends StatelessWidget {
                         SizedBox(height: 10),
                         Text(
                           'UI/UX Designer & Web Developer',
-                          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                          style: TextStyle(
+                            fontSize: screenWidth * 0.015, // ~18 at 1280px
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                         SizedBox(height: 10),
                         Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
-                          style: TextStyle(fontSize: 16),
+                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
+                          style: TextStyle(fontSize: screenWidth * 0.0125,fontFamily: 'PublicSans'),
                         ),
-                        SizedBox(height: 10),
+                        SizedBox(height: 20),
+
+                        // Info Rows
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Row(
-                              children: [
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                SizedBox(width: 10,),
-                                Text('Birthday: 1 May 1995'),
-                                SizedBox(width: 100,),
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                SizedBox(width: 10,),
-                                Text('Age: 30'),
-                              ],
+                            _buildInfoRow(
+                              leftIconText: 'Birthday: 1 May 1995',
+                              rightIconText: 'Age: 30',
+                              screenWidth: screenWidth,
                             ),
-                            Row(
-                              children: [
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                SizedBox(width: 10,),
-                                Text('Website: www.example.com'),
-                                SizedBox(width: 50,),
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                Text('Degree:Undergraduate'),
-                              ],
+                            _buildInfoRow(
+                              leftIconText: 'Website: www.example.com',
+                              rightIconText: 'Degree: Undergraduate',
+                              screenWidth: screenWidth,
                             ),
-                            Row(
-                              children: [
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                SizedBox(width: 10,),
-                                Text('Phone: +123 456 7890'),
-                                SizedBox(width: 80,),
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                SizedBox(width: 10,),
-                                Text('Email:tazeenzahrabatool@gmail.com'),
-                              ],
+                            _buildInfoRow(
+                              leftIconText: 'Phone: +123 456 7890',
+                              rightIconText: 'Email: tazeenzahrabatool@gmail.com',
+                              screenWidth: screenWidth,
                             ),
-                            Row(
-                              children: [
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                SizedBox(width: 10,),
-                                Text('City: Dera Ismail Khan'),
-                                SizedBox(width: 80,),
-                                Icon(Icons.arrow_forward_ios,color: Colors.brown,size: 10,),
-                                SizedBox(width: 10,),
-                                Text('Freelance: Available'),
-
-                              ],
+                            _buildInfoRow(
+                              leftIconText: 'City: Dera Ismail Khan',
+                              rightIconText: 'Freelance: Available',
+                              screenWidth: screenWidth,
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
+
+                        SizedBox(height: 20),
                         Text(
-                          'Officiis eligendi itaque labore et dolorum mollitia officiis optio vero. Quisquam sunt adipisci omnis et ut. Nulla accusantium dolor incidunt officia tempore. Et eius omnis. Cupiditate ut dicta maxime officiis quidem quia. Sed et consectetur qui quia repellendus itaque neque.',
-                          style: TextStyle(fontSize: 16),
+                          'Officiis eligendi itaque labore et dolorum mollitia officiis optio vero...',
+                          style: TextStyle(fontSize: screenWidth * 0.0125, fontFamily: 'PublicSans'),
                         ),
                       ],
                     ),
@@ -127,6 +116,29 @@ class AboutPage extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+
+  Widget _buildInfoRow({
+    required String leftIconText,
+    required String rightIconText,
+    required double screenWidth,
+  }) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 6),
+      child: Row(
+        children: [
+          Icon(Icons.arrow_forward_ios, color: Colors.brown, size: 10),
+          SizedBox(width: 10),
+          Text(leftIconText, style: TextStyle(fontSize: screenWidth * 0.0125)),
+          SizedBox(width: screenWidth * 0.05), // ~60 at 1280px
+          Icon(Icons.arrow_forward_ios, color: Colors.brown, size: 10),
+          SizedBox(width: 10),
+          Flexible(
+            child: Text(rightIconText, style: TextStyle(fontSize: screenWidth * 0.0125)),
+          ),
+        ],
       ),
     );
   }

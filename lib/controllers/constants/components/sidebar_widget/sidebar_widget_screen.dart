@@ -20,7 +20,13 @@ class _SidebarWidgetState extends State<SidebarWidget> {
     double sidebarWidth = screenWidth > 1200 ? 300 : (screenWidth > 600 ? 250 : 200);
     return Container(
       width: sidebarWidth,
-      color: AppColors.primaryBlack,
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black,Colors.brown],
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+        ),
+      ),
       child: SingleChildScrollView( // Scrollable
         child: ConstrainedBox(
           constraints: BoxConstraints(minHeight: MediaQuery.of(context).size.height),
