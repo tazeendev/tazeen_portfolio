@@ -7,6 +7,8 @@ import 'package:tazeen_portfolio/web_view/page_1/page_1.dart';
 import 'package:tazeen_portfolio/web_view/page_2/desktop_about_page/desktop_about_page.dart' hide AboutPage;
 import 'package:tazeen_portfolio/web_view/screen.dart';
 
+import 'controllers/constants/components/responsive_layout_widegt.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -38,8 +40,9 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home:MainWebPage(),
-      //AboutPage(),
+      home:
+      //MainWebPage(),
+      AboutSection(),
       //YogaStudioScreen(),
       //ImageScreen(),
       //ArcImagesScreen(),

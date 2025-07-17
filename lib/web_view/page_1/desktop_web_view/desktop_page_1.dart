@@ -1,145 +1,174 @@
 import 'package:flutter/material.dart';
 import 'package:tazeen_portfolio/controllers/utills/app_colors/app_colors.dart';
-import 'package:tazeen_portfolio/controllers/utills/app_images/app_images.dart';
 
-class AboutPage extends StatelessWidget {
+class AboutSection extends StatelessWidget {
+  const AboutSection({super.key});
+
   @override
   Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    return Scaffold(
-      backgroundColor: AppColors.whiteText,
-      body: Padding(
-        padding: EdgeInsets.symmetric(
-          horizontal: screenWidth * 0.09, // 8% horizontal padding
-          vertical: 32,
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(vertical: 50, horizontal: 40),
+      decoration: const BoxDecoration(
+        gradient: LinearGradient(
+          colors: [Colors.black, Color(0xFF1E1E2C)],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
         ),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // --- Heading ---
-              Text(
-                'About',
-                style: TextStyle(
-                  fontSize: screenWidth * 0.025, // ~32 at 1280px
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Castoro',
-                  color: Colors.black,
+      ),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          /// ✅ Left Side (Heading + Glow Line + Description + Timeline)
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Gradient Heading
+                ShaderMask(
+                  shaderCallback: (bounds) => const LinearGradient(
+                    colors: [Color(0xffF58B54), Colors.purpleAccent],
+                  ).createShader(bounds),
+                  child: const Text(
+                    "About Me",
+                    style: TextStyle(
+                      fontSize: 45,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                      fontFamily: 'Inter',
+                      decoration: TextDecoration.none,
+                    ),
+                  ),
                 ),
-              ),
-              SizedBox(height: 6),
-              Container(
-                width: screenWidth * 0.06, // ~80 at 1280px
-                height: 3,
-                color: Colors.brown,
-              ),
-              SizedBox(height: 10),
-              Text(
-                'Magnam dolores commodi suscipit. Necessitatibus eius consequuntur ex aliquid fuga eum quidem. Sit sint consectetur velit...',
-                style: TextStyle(fontSize: screenWidth * 0.0125), // ~16 at 1280px
-              ),
-              SizedBox(height: 30),
 
-              // --- Main Row ---
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Left Side Image
-                  Expanded(
-                    child: Image.asset(
-                      AppImages.heroImage,
-                      height: screenWidth * 0.35, // ~450 at 1280px
-                      fit: BoxFit.cover,
-                    ),
+                const SizedBox(height: 8),
+
+                /// ✅ Glowing Line
+                Container(
+                  height: 3,
+                  width: 120,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    borderRadius: BorderRadius.circular(4),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors.primary.withOpacity(0.6),
+                        blurRadius: 12,
+                        spreadRadius: 2,
+                      ),
+                    ],
                   ),
-                  SizedBox(width: screenWidth * 0.02), // ~20 at 1280px
+                ),
 
-                  // Right Side Text
-                  Expanded(
-                    flex: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        SizedBox(height: 10),
-                        Text(
-                          'UI/UX Designer & Web Developer',
-                          style: TextStyle(
-                            fontSize: screenWidth * 0.015, // ~18 at 1280px
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Lorem ipsum dolor sit amet, consectetur adipiscing elit...',
-                          style: TextStyle(fontSize: screenWidth * 0.0125,fontFamily: 'PublicSans'),
-                        ),
-                        SizedBox(height: 20),
+                const SizedBox(height: 20),
 
-                        // Info Rows
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            _buildInfoRow(
-                              leftIconText: 'Birthday: 1 May 1995',
-                              rightIconText: 'Age: 30',
-                              screenWidth: screenWidth,
-                            ),
-                            _buildInfoRow(
-                              leftIconText: 'Website: www.example.com',
-                              rightIconText: 'Degree: Undergraduate',
-                              screenWidth: screenWidth,
-                            ),
-                            _buildInfoRow(
-                              leftIconText: 'Phone: +123 456 7890',
-                              rightIconText: 'Email: tazeenzahrabatool@gmail.com',
-                              screenWidth: screenWidth,
-                            ),
-                            _buildInfoRow(
-                              leftIconText: 'City: Dera Ismail Khan',
-                              rightIconText: 'Freelance: Available',
-                              screenWidth: screenWidth,
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(height: 20),
-                        Text(
-                          'Officiis eligendi itaque labore et dolorum mollitia officiis optio vero...',
-                          style: TextStyle(fontSize: screenWidth * 0.0125, fontFamily: 'PublicSans'),
-                        ),
-                      ],
-                    ),
+                // Intro Text
+                const Text(
+                  "I'm Tazeen Zahra, a passionate Flutter developer with a love for creating modern, responsive, and high-performing applications. I specialize in building beautiful UIs and delivering seamless user experiences using Flutter and Dart. Always curious, always learning!",
+                  textAlign: TextAlign.start,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                    height: 1.5,
+                    fontFamily: 'Inter',
+                    decoration: TextDecoration.none,
                   ),
-                ],
-              ),
-            ],
+                ),
+
+                const SizedBox(height: 30),
+
+                /// ✅ Timeline Section
+                Column(
+                  children: [
+                    buildTimelineTile("Gomal University", true, false),
+                    buildTimelineTile("Dera Ismail Khan, Pakistan", false, true),
+                  ],
+                ),
+              ],
+            ),
           ),
+
+          /// ✅ Middle Divider with Circle
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 30),
+            height: 200,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                // Line
+                Container(
+                  width: 2,
+                  height: 150,
+                  color: Colors.white30,
+                ),
+                // Circle at bottom
+                Container(
+                  width: 14,
+                  height: 14,
+                  decoration: BoxDecoration(
+                    color: AppColors.primary,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ],
+            ),
+          ),
+
+          /// ✅ Right Side (Small Circles with Icons)
+          Expanded(
+            flex: 2,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                buildIconCircle(Icons.flutter_dash, Colors.blue),
+                const SizedBox(height: 20),
+                buildIconCircle(Icons.android, Colors.green),
+                const SizedBox(height: 20),
+                buildIconCircle(Icons.web, Colors.orange),
+                const SizedBox(height: 20),
+                buildIconCircle(Icons.code, Colors.purple),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  /// ✅ Timeline Tile Builder
+  Widget buildTimelineTile(String text, bool isFirst, bool isLast) {
+    return TimelineTile(
+      alignment: TimelineAlign.start,
+      isFirst: isFirst,
+      isLast: isLast,
+      indicatorStyle: IndicatorStyle(
+        width: 18,
+        color: AppColors.primary,
+        padding: const EdgeInsets.all(4),
+      ),
+      beforeLineStyle: const LineStyle(color: Colors.white30, thickness: 2),
+      endChild: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 8),
+        child: Text(
+          text,
+          style: const TextStyle(color: Colors.white70, fontSize: 14),
         ),
       ),
     );
   }
 
-  Widget _buildInfoRow({
-    required String leftIconText,
-    required String rightIconText,
-    required double screenWidth,
-  }) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
-      child: Row(
-        children: [
-          Icon(Icons.arrow_forward_ios, color: Colors.brown, size: 10),
-          SizedBox(width: 10),
-          Text(leftIconText, style: TextStyle(fontSize: screenWidth * 0.0125)),
-          SizedBox(width: screenWidth * 0.05), // ~60 at 1280px
-          Icon(Icons.arrow_forward_ios, color: Colors.brown, size: 10),
-          SizedBox(width: 10),
-          Flexible(
-            child: Text(rightIconText, style: TextStyle(fontSize: screenWidth * 0.0125)),
-          ),
-        ],
+  /// ✅ Custom Widget for Circle with Icon
+  Widget buildIconCircle(IconData icon, Color color) {
+    return Container(
+      width: 50,
+      height: 50,
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.2),
+        shape: BoxShape.circle,
+        border: Border.all(color: color, width: 2),
       ),
+      child: Icon(icon, color: color, size: 24),
     );
   }
 }
