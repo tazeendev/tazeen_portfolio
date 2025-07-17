@@ -38,6 +38,8 @@ dependencies:
   go_router: ^16.0.0
   animated_text_kit: ^4.2.3
   timelines: ^0.1.0
+  timeline_tile: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:
