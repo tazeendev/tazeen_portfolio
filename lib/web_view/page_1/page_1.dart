@@ -8,7 +8,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ResponsiveLayout(
-      desktop: DesktopPage1(),
+      desktop: AboutPage(),
       tablet: TabletPage1(),
       mobile: MobilePage1(),
     );

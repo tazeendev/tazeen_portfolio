@@ -3,15 +3,15 @@ class AppImages {
   static const String heroImage = 'assets/images/pic1.jpg';
 
   // Profile or User Avatars
-  static const String profileAvatar = 'assets/images/avatar.png';
+  static const String image2 = 'assets/images/image2.jpg';
 
   // Projects
-  static const String project1 = 'assets/images/project1.jpg';
-  static const String project2 = 'assets/images/project2.jpg';
+  static const String image3 = 'assets/images/image3.jpg';
+  static const String image1 = 'assets/images/image1.jpg';
 
   // Icons or Illustrations
-  static const String cameraIcon = 'assets/images/icons/camera.png';
-  static const String designIcon = 'assets/images/icons/design.png';
+  static const String image4 = 'assets/images/image4.jpg';
+  static const String image5= 'assets/images/image5.jpg';
 
 // Add more as needed...
 }
