@@ -42,7 +42,7 @@ class MyApp extends StatelessWidget {
       ),
       home:
       //MainWebPage(),
-      AboutSection(),
+      AboutScreen(),
       //YogaStudioScreen(),
       //ImageScreen(),
       //ArcImagesScreen(),
