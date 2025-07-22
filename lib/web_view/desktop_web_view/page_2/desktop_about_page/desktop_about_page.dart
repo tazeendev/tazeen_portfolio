@@ -1,23 +1,15 @@
 import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class AboutScreen extends StatelessWidget {
-  const AboutScreen({super.key});
+class AboutScreen_2 extends StatelessWidget {
+  const AboutScreen_2({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Stack(
+    return Stack(
         children: [
-          /// ✅ Background Gradient
           Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.black, Color(0xFF1E1E2C)],
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-              ),
-            ),
+            color: Colors.transparent,
           ),
 
           /// ✅ Blur Overlay
@@ -136,7 +128,6 @@ class AboutScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
     );
   }
 
