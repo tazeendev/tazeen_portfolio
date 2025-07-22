@@ -242,6 +242,7 @@ class _AboutScreenState extends State<AboutScreen> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+
             /// ✅ LEFT SIDE (About Me Section)
             Expanded(flex: 2, child: buildLeftSide()),
 
@@ -271,16 +272,12 @@ class _AboutScreenState extends State<AboutScreen> {
                 ],
               ),
             ),
-
-            /// ✅ RIGHT SIDE (What I'm Great At)
             Expanded(flex: 2, child: buildRightSide()),
           ],
         ),
       ),
     );
   }
-
-  /// ✅ LEFT SIDE
   Widget buildLeftSide() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -305,8 +302,6 @@ class _AboutScreenState extends State<AboutScreen> {
         ),
 
         const SizedBox(height: 8),
-
-        /// Glowing Line
         Container(
           height: 3,
           width: 120,
@@ -323,8 +318,6 @@ class _AboutScreenState extends State<AboutScreen> {
           ),
         ),
         const SizedBox(height: 20),
-
-        /// Intro Text
         RichText(
           text: const TextSpan(
             style: TextStyle(
