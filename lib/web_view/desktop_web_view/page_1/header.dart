@@ -10,56 +10,51 @@ class HeaderScreen extends StatefulWidget {
 
 class _HeaderScreenState extends State<HeaderScreen> {
   final List<String> leftMenu = ["Home", "Services", "Blog"];
-  final List<String> rightMenu = ["About", "Contact", "Projects", "Resume"];
+  final List<String> rightMenu = ["About", "Projects", "Contact", "Freelance"];
   String hoverMenu = "";
   bool isButtonHovered = false;
-
   @override
   Widget build(BuildContext context) {
     return Container(
-      height:90,
+      height: 90,
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 35, vertical: 14),
-
-      /// ✅ Prevent overflow by enabling horizontal scroll
-      child: SingleChildScrollView(
-        scrollDirection: Axis.horizontal,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            /// ✅ Left Menu (No vertical line now)
-            _buildMenu(leftMenu),
-
-            const SizedBox(width: 20),
-
-            /// ✅ Logo
-            Image.asset('assets/logu/logo.png', height: 50),
-
-            const SizedBox(width: 20),
-
-            /// ✅ Right Menu + Button
-            Row(
-              children: [
-                _buildMenu(rightMenu),
-                const SizedBox(width: 16),
-                _buildGetStartedButton(),
-              ],
-            ),
-          ],
-        ),
+      padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 14),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            children: [
+              _buildMenu(leftMenu),
+              const SizedBox(width: 20),
+              _buildDecorativeLineWithCircle(
+                length: 100,
+                isCircleAtEnd: true,
+              ), // left line
+            ],
+          ),
+          Image.asset('assets/logu/logo.png', height: 55),
+          Row(
+            children: [
+              _buildDecorativeLineWithCircle(
+                length: 100,
+                isCircleAtEnd: false,
+              ), // right line
+              const SizedBox(width: 20),
+              _buildMenu(rightMenu),
+              const SizedBox(width: 16),
+              _buildGetStartedButton(),
+            ],
+          ),
+        ],
       ),
     );
   }
-
-  /// ✅ Menu Builder (Hover effect only)
   Widget _buildMenu(List<String> menuItems) {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: menuItems.map((item) => _buildHoverMenu(item)).toList(),
     );
   }
-
-  /// ✅ Hover Effect for Menu Items
   Widget _buildHoverMenu(String text) {
     bool isHovered = hoverMenu == text;
     return MouseRegion(
@@ -95,8 +90,39 @@ class _HeaderScreenState extends State<HeaderScreen> {
       ),
     );
   }
-
-  /// ✅ Get Started Button
+  Widget _buildDecorativeLineWithCircle({
+    required double length,
+    required bool isCircleAtEnd,
+  }) {
+    return Row(
+      children: isCircleAtEnd
+          ? [
+              Container(width: length, height: 2, color: AppColors.primary),
+              _buildCircle(),
+            ]
+          : [
+              _buildCircle(),
+              Container(width: length, height: 2, color: AppColors.primary),
+            ],
+    );
+  }
+  Widget _buildCircle() {
+    return Container(
+      width: 12,
+      height: 12,
+      decoration: BoxDecoration(
+        color: AppColors.primary,
+        shape: BoxShape.circle,
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.primary.withOpacity(0.7),
+            blurRadius: 12,
+            spreadRadius: 3,
+          ),
+        ],
+      ),
+    );
+  }
   Widget _buildGetStartedButton() {
     return MouseRegion(
       onEnter: (_) => setState(() => isButtonHovered = true),
@@ -106,29 +132,29 @@ class _HeaderScreenState extends State<HeaderScreen> {
         decoration: BoxDecoration(
           boxShadow: isButtonHovered
               ? [
-            BoxShadow(
-              color: AppColors.primary.withOpacity(0.7),
-              blurRadius: 15,
-              spreadRadius: 4,
-            ),
-          ]
+                  BoxShadow(
+                    color: AppColors.primary.withOpacity(0.7),
+                    blurRadius: 15,
+                    spreadRadius: 4,
+                  ),
+                ]
               : [],
         ),
         child: ElevatedButton(
           onPressed: () {},
           style: ElevatedButton.styleFrom(
-            backgroundColor:
-            isButtonHovered ? AppColors.secondary : AppColors.primary,
+            backgroundColor: isButtonHovered
+                ? AppColors.secondary
+                : AppColors.primary,
             shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(8)),
-            padding:
-            const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
           ),
           child: Text(
             "Get Started",
             style: TextStyle(
-              color:
-              isButtonHovered ? AppColors.primary : AppColors.DarkGrey,
+              color: isButtonHovered ? AppColors.primary : AppColors.DarkGrey,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
               fontSize: 14,
