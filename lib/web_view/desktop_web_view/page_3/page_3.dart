@@ -1,9 +1,8 @@
 import 'dart:ui';
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
-import 'package:tazeen_portfolio/controllers/utills/app_images/app_images.dart';
-import '../../../controllers/constants/components/sidebar_widget/sidebar_widget_screen.dart';
-import '../../../controllers/utills/app_colors/app_colors.dart';
+import '../../../core/constants/components/sidebar_widget/sidebar_widget_screen.dart';
+import '../../../core/utills/app_images/app_images.dart';
 
 class DesktopPage1 extends StatefulWidget {
   @override
@@ -32,10 +31,6 @@ class _DesktopPage1State extends State<DesktopPage1> {
                     width: screenWidth * 1.0,
                     height: screenHeight * 1.5,
                     decoration: BoxDecoration(
-                      image: DecorationImage(
-                        image: AssetImage(AppImages.heroImage),
-                        fit: BoxFit.cover,
-                      ),
                     ),
                   ),
                   Positioned.fill(
